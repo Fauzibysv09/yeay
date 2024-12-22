@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I LOVE YOU Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #001f3f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            cursor: pointer;
+        }
+        .text {
+            position: absolute;
+            font-size: 24px;
+            color: white;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const colors = ['red', 'yellow', 'green', 'cyan', 'magenta', 'orange', 'white', 'pink'];
+        document.body.addEventListener('click', function(event) {
+            const textElement = document.createElement('div');
+            textElement.className = 'text';
+            textElement.textContent = 'I LOVE YOU';
+            textElement.style.left = event.clientX + 'px';
+            textElement.style.top = event.clientY + 'px';
+            textElement.style.color = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(textElement);
+            requestAnimationFrame(() => {
+                textElement.style.opacity = 1;
+            });
+            setTimeout(() => {
+                textElement.style.opacity = 0;
+                setTimeout(() => {
+                    textElement.remove();
+                }, 1000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
